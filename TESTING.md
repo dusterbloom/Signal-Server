@@ -14,7 +14,7 @@ The service can be run in a feature-limited test mode by running the Maven `inte
 goal with the `test-server` profile activated:
 
 ```sh
-./mvnw integration-test -Ptest-server [-DskipTests=true]
+./mvnw clean integration-test -DskipTests=true -Ptest-server
 ```
 
 This runs [`LocalWhisperServerService`][lwss] with [test configuration][test.yml] and [secrets][test secrets]. External
