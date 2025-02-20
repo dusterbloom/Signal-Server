@@ -15,7 +15,28 @@ awsCredentialsProvider:
   secretAccessKey: secret://aws.secretAccessKey
 
 metrics:
-  reporters: []
+  reporters:
+    - type: signal-datadog
+      frequency: 10 seconds
+      tags:
+        - "env:test"
+        - "service:chat"
+      udpTransport:
+        statsdHost: localhost
+        port: 8125
+      excludesAttributes:
+        - m1_rate
+        - m5_rate
+        - m15_rate
+        - mean_rate
+        - stddev
+      useRegexFilters: true
+      excludes:
+        - ^.+\.total$
+        - ^.+\.request\.filtering$
+        - ^.+\.response\.filtering$
+        - ^executor\..+$
+        - ^lettuce\..+$
   reportOnStop: false
 
 tlsKeyStore:
@@ -237,6 +258,10 @@ cdn3StorageManager:
     2: gcs
     3: r2
 
+dogstatsd:
+  type: nowait
+  environment: dev
+  host: 127.0.0.1
 
 unidentifiedDelivery:
   certificate: secret://unidentifiedDelivery.certificate
