@@ -1,11 +1,13 @@
 {
   "dependencies": {
-    "@signalapp/signal-client": "^0.14.0"
+    "@signalapp/libsignal-client": "0.66.2",
+    "axios": "^1.7.9",
+    "protobufjs": "^7.4.0",
+    "ws": "^8.18.0"
   },
   "name": "signal-client-test",
   "version": "1.0.0",
   "main": "index.js",
-  "devDependencies": {},
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
