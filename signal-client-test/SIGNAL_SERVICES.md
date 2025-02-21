@@ -195,8 +195,12 @@ The most up-to-date community-maintained documentation can often be found in for
 **One Extra Opportunity:**
 Given we have no choice but to go through the pain of setting up a full production instance of Signal server, hereby propose to evaluate the use of more than just CDSI related endpoints.
 
+In particular there seem to be endpoints that could help for:
+1. `/v2/keys/{identifier}/{device_id}:`  - Users can send an identifiers to an endpoint and get public keys back
+2. `/v1/key-transparency/search`- New endpoint seems to also enable search for discoverable users  
 
 
+There are more services that seems useful like Profile / Messages but need more study.
 
 ### 3.b CDSI Enclave Configuration<a name="production-enclave"></a>
 1. Build the enclave
@@ -292,7 +296,7 @@ Both need shared secrets and share a common phone number database.
 ## Contact Discovery Steps
 
 1. **Generate CDSI Credentials**:
-   - Use the registered user's information to generate credentials specifically for accessing CDSI using the signal server `v2/directory/auth` endpoint 
+   - Use the registered user's information to generate credentials specifically for accessing CDSI using the signal server `v2/directory/auth` endpoint. Generated credentials have an expiration time of 24 hours (however, the TTL is fully controlled by the server and may change even for already generated credentials).
 
 2. **Connect to CDSI**:
    - Establish a WebSocket connection to the CDSI server using the generated credentials.
